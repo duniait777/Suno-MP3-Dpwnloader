@@ -1,1 +1,751 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Suno AI music downloader tool. Download your Suno AI generated songs in MP3 format easily. No registration required.">
+    <meta name="keywords" content="Suno, AI music, MP3 downloader, Suno AI, music generator, download Suno songs">
+    <meta name="author" content="Suno MP3 Downloader">
+    <meta name="robots" content="index, follow">
+    <meta name="google-site-verification" content="RSr3FMx8orgDUJ0eSOwKq51S_LNk-xIWJECwv41sgS8" />
+    <!-- Dynamic Open Graph and Twitter Card tags -->
+    <meta property="og:title" content="Suno MP3 Downloader - Free No Login">
+    <meta property="og:description" content="Free online tool to download Suno AI music in MP3 format. Just paste the song URL and download.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sunomp3downloader.com">
+    <meta property="og:image" content="favicon-512x512.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    <link rel="icon" type="image/x-icon" href="https://suno.com/favicon.ico" sizes="any"/><link rel="icon" type="image/png" href="https://suno.com/favicon-192x192.png" sizes="192x192"/><link rel="icon" type="image/png" href="https://suno.com/favicon-512x512.png" sizes="512x512"/><link rel="apple-touch-icon" href="https://suno.com/apple-touch-icon.png"/>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Suno MP3 Downloader - Free No Login">
+    <meta name="twitter:description" content="Free online tool to download Suno AI music in MP3 format. Just paste the song URL and download.">
+    <meta name="twitter:image" content="favicon-512x512.png">
+    
+    <title>Suno MP3 Downloader - Download Suno AI Generated Music</title>
+    <!-- Source Protection Script -->
+    <script>
+    (function() {
+        // Check for view-source protocol
+        if (window.location.href.indexOf('view-source:') > -1) {
+            window.location.href = window.location.origin;
+        }
+        
+        // Right-click is allowed per user request
+        // No contextmenu prevention code
+        
+        // Disable keyboard shortcuts for source viewing
+        document.addEventListener('keydown', function(e) {
+            // Disable Ctrl+U (View Source)
+            if (e.ctrlKey && e.key === 'u') {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Disable F12 (Developer Tools)
+            if (e.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Disable Ctrl+Shift+I (Developer Tools)
+            if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+                e.preventDefault();
+                return false;
+            }
+            
+            // Disable Ctrl+Shift+C (Inspect Element)
+            if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+                e.preventDefault();
+                return false;
+            }
+        });
+        
+        // Detect DevTools opening
+        const devToolsDetector = {
+            isOpen: false,
+            orientation: undefined,
+            
+            init: function() {
+                // Create div element for detection
+                const detector = document.createElement('div');
+                Object.defineProperty(detector, 'id', {
+                    get: function() {
+                        // DevTools will access the id property when inspecting elements
+                        devToolsDetector.isOpen = true;
+                        if (window.devToolsIsOpen !== true) {
+                            window.devToolsIsOpen = true;
+                            // Perform action when DevTools is detected open
+                            window.location.href = window.location.origin;
+                        }
+                        return null;
+                    }
+                });
+                
+                // Check intermittently for DevTools
+                setInterval(function() {
+                    if (devToolsDetector.isOpen && !window.devToolsIsOpen) {
+                        window.devToolsIsOpen = true;
+                        // Perform action when DevTools is detected open
+                        window.location.href = window.location.origin;
+                    }
+                    devToolsDetector.isOpen = false;
+                    console.log(detector);
+                    console.clear();
+                }, 1000);
+            }
+        };
+        
+        // Initialize DevTools detector
+        devToolsDetector.init();
+    })();
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                        secondary: '#8E8DFF',
+                        dark: {
+                            primary: '#181818',
+                            secondary: '#252525',
+                            tertiary: '#333333'
+                        },
+                        light: {
+                            primary: '#FFFFFF',
+                            secondary: '#F5F5F5',
+                            tertiary: '#E5E7EB'
+                        }
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 2s infinite',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        }
+                    },
+                    boxShadow: {
+                        'premium': '0 10px 25px -5px rgba(93, 92, 222, 0.1), 0 8px 10px -6px rgba(93, 92, 222, 0.1)',
+                        'premium-dark': '0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2)',
+                    }
+                }
+            }
+        }
+
+        // Check for dark mode preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* AdSense-friendly scrolling behavior */
+        html {
+            scroll-padding-top: 80px;
+        }
+
+        .loader {
+            border-top-color: #5D5CDE;
+            -webkit-animation: spinner 1.5s linear infinite;
+            animation: spinner 1.5s linear infinite;
+        }
+
+        @-webkit-keyframes spinner {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spinner {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .audio-player::-webkit-media-controls-enclosure {
+            border-radius: 10px;
+            background-color: rgba(93, 92, 222, 0.1);
+        }
+
+        /* Glass morphism effect */
+        .glass-effect {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .dark .glass-effect {
+            background-color: rgba(24, 24, 24, 0.8);
+        }
+
+        /* Premium button effect */
+        .premium-btn {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .premium-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.4s ease;
+        }
+        
+        .premium-btn:hover::after {
+            left: 100%;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        .dark ::-webkit-scrollbar-track {
+            background: #252525;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #5D5CDE;
+            border-radius: 8px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8E8DFF;
+        }
+        
+        /* Social Share Buttons */
+        .share-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 6px rgba(93, 92, 222, 0.2);
+        }
+        
+        /* Download button animation */
+        @keyframes pulse-download {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(93, 92, 222, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(93, 92, 222, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(93, 92, 222, 0); }
+        }
+        
+        .pulse-animation {
+            animation: pulse-download 2s infinite;
+        }
+
+        /* AdSense placeholder styling */
+        .ad-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem auto;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .dark .ad-container {
+            background-color: #252525;
+        }
+        
+        /* Enable smooth transition for all elements */
+        * {
+            transition-property: background-color, border-color, color, fill, stroke;
+            transition-duration: 0.3s;
+            transition-timing-function: ease;
+        }
+    </style>
+  <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Suno MP3 Downloader",
+    "url": "https://sunomp3downloader.com",
+    "description": "Free online tool to download Suno AI generated music in MP3 format. Just paste the song URL and download.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+    },
+    "creator": {
+        "@type": "Organization",
+        "name": "Suno MP3 Downloader"
+    },
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.5",
+        "ratingCount": "150"
+    },
+    "logo": "favicon-512x512.png"
+}
+</script>
+
+
+</head>
+<body class="bg-light-primary dark:bg-dark-primary text-gray-800 dark:text-gray-200 min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-white dark:bg-dark-primary shadow-lg transition-all duration-300 backdrop-blur-md bg-opacity-90 dark:bg-opacity-90">
+        <nav class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between">
+            <div class="flex items-center">
+                <div class="shrink-0 mr-3">
+                    <svg class="h-10 w-10" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="25" cy="25" r="22" stroke="#5D5CDE" stroke-width="3" />
+                        <path d="M32 25C32 28.866 28.866 32 25 32C21.134 32 18 28.866 18 25C18 21.134 21.134 18 25 18C28.866 18 32 21.134 32 25Z" fill="#5D5CDE" />
+                        <rect x="24" y="10" width="2" height="8" rx="1" fill="#5D5CDE" />
+                        <rect x="24" y="32" width="2" height="8" rx="1" fill="#5D5CDE" />
+                        <rect x="40" y="24" width="2" height="8" rx="1" transform="rotate(90 40 24)" fill="#5D5CDE" />
+                        <rect x="18" y="24" width="2" height="8" rx="1" transform="rotate(90 18 24)" fill="#5D5CDE" />
+                    </svg>
+                </div>
+                <a href="/" class="font-bold text-xl md:text-2xl text-gray-800 dark:text-white hover:text-primary dark:hover:text-secondary transition duration-300">Suno MP3 Downloader</a>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <!-- Dark Mode Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-dark-secondary focus:outline-none transition-all duration-300" aria-label="Toggle dark mode">
+                    <!-- Sun icon -->
+                    <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+                    </svg>
+                    <!-- Moon icon -->
+                    <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+                
+                <!-- Mobile Menu Button -->
+                <button id="menu-toggle" class="md:hidden flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-secondary">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Menu Items -->
+            <div id="menu-items" class="hidden md:flex flex-col md:flex-row w-full md:w-auto mt-4 md:mt-0 md:ml-4 md:items-center">
+                <a href="#" class="py-2 md:px-4 text-primary hover:text-secondary dark:text-white dark:hover:text-secondary transition duration-300">Home</a>
+                <a href="#how-to-use" class="py-2 md:px-4 text-primary hover:text-secondary dark:text-white dark:hover:text-secondary transition duration-300">How to Use</a>
+                <a href="#faq" class="py-2 md:px-4 text-primary hover:text-secondary dark:text-white dark:hover:text-secondary transition duration-300">FAQ</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <!-- Hero Section -->
+        <section class="py-6 md:py-12 text-center">
+            <h1 class="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary inline-block text-transparent bg-clip-text">Download Suno AI Generated Music</h1>
+            <p class="text-lg md:text-xl mb-8 text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">Just paste your Suno share link and download the MP3 file instantly. No signup required.</p>
+            
+            <!-- AdSense Placeholder - Top Banner -->
+            <div class="ad-container w-full h-24 mb-8">
+                <div class="text-sm text-gray-400 dark:text-gray-500">Advertisement</div>
+            </div>
+            
+            <!-- Input Form -->
+            <div class="max-w-3xl mx-auto bg-white dark:bg-dark-secondary rounded-xl shadow-premium dark:shadow-premium-dark p-6 mb-8 transform transition-all duration-300 hover:translate-y-[-5px]">
+                <form id="download-form" class="space-y-4">
+                    <div class="relative">
+                        <label for="suno-url" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Suno Share URL</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                                </svg>
+                            </div>
+                            <input 
+                                type="url" 
+                                id="suno-url" 
+                                placeholder="https://suno.com/song/... or https://suno.com/s/..." 
+                                class="w-full pl-10 px-4 py-3 text-base border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                required
+                            >
+                        </div>
+                    </div>
+                    <button 
+                        id="generate-btn" 
+                        type="submit" 
+                        class="w-full bg-primary hover:bg-secondary text-white font-semibold py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center space-x-2 premium-btn shadow-lg"
+                    >
+                        <span>Generate Download</span>
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        </svg>
+                    </button>
+                </form>
+                
+                <!-- Loading Indicator -->
+                <div id="loading" class="hidden flex items-center justify-center py-8">
+                    <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
+                    <span id="loading-text" class="ml-4 text-gray-600 dark:text-gray-300">Fetching song data...</span>
+                </div>
+                
+                <!-- Error Message -->
+                <div id="error-message" class="hidden py-4 px-6 bg-red-100 border-l-4 border-red-500 text-red-700 dark:bg-red-900 dark:text-red-200 rounded-md mt-4">
+                    <p class="font-medium">Error fetching song data. Please check the URL and try again. Please Click Generate button again.</p>
+                </div>
+                
+                <!-- Results Section -->
+                <div id="results" class="hidden mt-8 space-y-6">
+                    <div class="flex flex-col md:flex-row items-start gap-6">
+                        <!-- Song Image -->
+                        <div class="w-full md:w-1/3 flex-shrink-0">
+                            <div class="rounded-xl overflow-hidden shadow-xl transform transition-all duration-500 hover:scale-[1.02]">
+                                <img id="song-image" src="" alt="Song Artwork" class="w-full h-auto object-cover">
+                            </div>
+                        </div>
+                        
+                        <!-- Song Details -->
+                        <div class="w-full md:w-2/3 space-y-4">
+                            <h2 id="song-title" class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white"></h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                    <span class="text-gray-600 dark:text-gray-300">Created: <span id="creation-date" class="font-medium"></span></span>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <span class="text-gray-600 dark:text-gray-300">Plays: <span id="play-count" class="font-medium"></span></span>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                    </svg>
+                                    <span class="text-gray-600 dark:text-gray-300">AI Model: <span id="ai-model" class="font-medium"></span></span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h3 class="text-md font-semibold text-gray-700 dark:text-gray-200 mb-2">Prompt:</h3>
+                                <p id="song-prompt" class="text-gray-600 dark:text-gray-300 text-sm bg-gray-50 dark:bg-gray-700 p-4 rounded-lg"></p>
+                            </div>
+                            
+                            <!-- Audio Player -->
+                            <div class="my-6">
+                                <audio id="audio-player" controls class="w-full audio-player rounded-lg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                            
+                            <!-- Download Button -->
+                            <button 
+                                id="download-btn" 
+                                class="inline-block bg-primary hover:bg-secondary text-white font-semibold py-4 px-6 rounded-lg transition duration-300 w-full text-center mb-4 pulse-animation shadow-lg"
+                            >
+                                <div class="flex items-center justify-center space-x-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                    </svg>
+                                    <span>Download MP3</span>
+                                </div>
+                            </button>
+                            
+                            <!-- Download Status -->
+                            <div id="download-status" class="hidden text-center text-sm mb-4 text-green-600 dark:text-green-400 font-medium">
+                                <div class="flex items-center justify-center">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>Click the button again if download doesn't start automatically.</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Social Share Buttons -->
+                            <div class="mt-4">
+                                <h3 class="text-md font-semibold text-gray-700 dark:text-gray-200 mb-3">Share this song:</h3>
+                                <div class="flex flex-wrap justify-center gap-3">
+                                    <button id="share-twitter" class="share-btn flex items-center justify-center bg-[#1DA1F2] text-white py-2 px-4 rounded-lg">
+                                        <i class="fab fa-twitter mr-2"></i>
+                                        Twitter
+                                    </button>
+                                    <button id="share-facebook" class="share-btn flex items-center justify-center bg-[#4267B2] text-white py-2 px-4 rounded-lg">
+                                        <i class="fab fa-facebook-f mr-2"></i>
+                                        Facebook
+                                    </button>
+                                    <button id="share-whatsapp" class="share-btn flex items-center justify-center bg-[#25D366] text-white py-2 px-4 rounded-lg">
+                                        <i class="fab fa-whatsapp mr-2"></i>
+                                        WhatsApp
+                                    </button>
+                                    <button id="share-telegram" class="share-btn flex items-center justify-center bg-[#0088cc] text-white py-2 px-4 rounded-lg">
+                                        <i class="fab fa-telegram-plane mr-2"></i>
+                                        Telegram
+                                    </button>
+                                    <button id="copy-link" class="share-btn flex items-center justify-center bg-gray-600 text-white py-2 px-4 rounded-lg">
+                                        <i class="fas fa-link mr-2"></i>
+                                        Copy Link
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AdSense Placeholder - After Results -->
+            <div class="ad-container w-full h-36 mb-8">
+                <div class="text-sm text-gray-400 dark:text-gray-500">Advertisement</div>
+            </div>
+        </section>
+        
+        <!-- How to Use Section -->
+        <section id="how-to-use" class="py-10 md:py-16 scroll-mt-20">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4 inline-block">How to Use <span class="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">Suno MP3 Downloader</span></h2>
+                    <div class="h-1 w-24 bg-primary rounded-full mx-auto"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
+                    <div class="flex flex-col items-center text-center p-6 bg-white dark:bg-dark-secondary rounded-xl shadow-premium dark:shadow-premium-dark transform transition-all duration-300 hover:translate-y-[-5px]">
+                        <div class="bg-primary/10 p-4 rounded-full mb-4">
+                            <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Copy Suno URL</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Get the share link of any Suno AI generated song you want to download.</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center text-center p-6 bg-white dark:bg-dark-secondary rounded-xl shadow-premium dark:shadow-premium-dark transform transition-all duration-300 hover:translate-y-[-5px]">
+                        <div class="bg-primary/10 p-4 rounded-full mb-4">
+                            <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Paste & Generate</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Paste the URL in the input field and click the Generate button to fetch song data.</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center text-center p-6 bg-white dark:bg-dark-secondary rounded-xl shadow-premium dark:shadow-premium-dark transform transition-all duration-300 hover:translate-y-[-5px]">
+                        <div class="bg-primary/10 p-4 rounded-full mb-4">
+                            <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Download MP3</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Listen to the preview and download the MP3 file with a single click.</p>
+                    </div>
+                </div>
+                
+                <!-- AdSense Placeholder - Middle Section -->
+                <div class="ad-container w-full h-36 my-10">
+                    <div class="text-sm text-gray-400 dark:text-gray-500">Advertisement</div>
+                </div>
+                
+                <div class="mt-12 p-6 bg-white dark:bg-dark-secondary rounded-xl shadow-premium dark:shadow-premium-dark">
+                    <h3 class="text-xl font-bold mb-4">Important Notes</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-300">
+                        <li>Both Suno URL formats are supported:
+                            <ul class="ml-6 mt-1 list-disc">
+                                <li><code class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-primary">https://suno.com/song/...</code> (Full URL)</li>
+                                <li><code class="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-primary">https://suno.com/s/...</code> (Short URL)</li>
+                            </ul>
+                        </li>
+                        <li>The downloader works with publicly shared Suno songs only.</li>
+                        <li>Downloaded songs are for personal use only. Respect the copyright of the content creator.</li>
+                        <li>If you encounter any issues, try refreshing the page or check if the Suno URL is still valid.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ Section -->
+        <section id="faq" class="py-10 md:py-16 scroll-mt-20">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4 inline-block">Frequently Asked <span class="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">Questions</span></h2>
+                    <div class="h-1 w-24 bg-primary rounded-full mx-auto"></div>
+                </div>
+                
+                <div class="space-y-4 mt-8">
+                    <div class="p-6 bg-white dark:bg-dark-secondary rounded-xl shadow-premium dark:shadow-premium-dark">
+                        <button class="faq-toggle flex justify-between items-center w-full focus:outline-none group" aria-expanded="false">
+                            <h3 class="text-lg font-semibold text-left">What is Suno AI?</h3>
+                            <svg class="w-5 h-5 text-primary transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden mt-4 text-gray-600 dark:text-gray-300">
+                            <p>Suno AI is an artificial intelligence platform that allows users to generate complete songs from text prompts. It's one of the most advanced AI music generation tools available, capable of creating songs with vocals, instruments, and complex arrangements based on textual descriptions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6 bg-white dark:bg-dark-secondary rounded-xl shadow-premium dark:shadow-premium-dark">
+                        <button class="faq-toggle flex justify-between items-center w-full focus:outline-none group" aria-expanded="false">
+                            <h3 class="text-lg font-semibold text-left">Is this tool official or affiliated with Suno?</h3>
+                            <svg class="w-5 h-5 text-primary transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden mt-4 text-gray-600 dark:text-gray-300">
+                            <p>No, this tool is not officially affiliated with Suno AI. It's an independent tool created to help users download and save their Suno AI generated songs for personal use.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6 bg-white dark:bg-dark-secondary rounded-xl shadow-premium dark:shadow-premium-dark">
+                        <button class="faq-toggle flex justify-between items-center w-full focus:outline-none group" aria-expanded="false">
+                            <h3 class="text-lg font-semibold text-left">What models does Suno use to generate music?</h3>
+                            <svg class="w-5 h-5 text-primary transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden mt-4 text-gray-600 dark:text-gray-300">
+                            <p>Suno uses various AI models to generate music, with "Chirp" being their flagship model. As of now, the most advanced version is Chirp v4. These models are trained on a vast array of music data to understand musical structure, vocals, instruments, and production styles.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- AdSense Placeholder - In FAQ -->
+                    <div class="ad-container w-full h-28">
+                        <div class="text-sm text-gray-400 dark:text-gray-500">Advertisement</div>
+                    </div>
+                    
+                    <div class="p-6 bg-white dark:bg-dark-secondary rounded-xl shadow-premium dark:shadow-premium-dark">
+                        <button class="faq-toggle flex justify-between items-center w-full focus:outline-none group" aria-expanded="false">
+                            <h3 class="text-lg font-semibold text-left">Can I use Suno songs commercially?</h3>
+                            <svg class="w-5 h-5 text-primary transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden mt-4 text-gray-600 dark:text-gray-300">
+                            <p>Suno's terms of service dictate the usage rights for songs created on their platform. Generally, Suno offers different licensing options based on your subscription plan. Free users typically have limited rights, while paid subscribers may have more commercial usage rights. Always check Suno's most current terms of service to understand what rights you have for songs you've created.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6 bg-white dark:bg-dark-secondary rounded-xl shadow-premium dark:shadow-premium-dark">
+                        <button class="faq-toggle flex justify-between items-center w-full focus:outline-none group" aria-expanded="false">
+                            <h3 class="text-lg font-semibold text-left">Why can't I download some songs?</h3>
+                            <svg class="w-5 h-5 text-primary transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden mt-4 text-gray-600 dark:text-gray-300">
+                            <p>There could be several reasons:</p>
+                            <ul class="list-disc list-inside mt-2 ml-4">
+                                <li>The song link may be private and not publicly shared</li>
+                                <li>The song may have been deleted from Suno's servers</li>
+                                <li>There might be temporary issues with Suno's service</li>
+                                <li>Our downloader may need to be updated for changes in Suno's platform</li>
+                            </ul>
+                            <p class="mt-2">If you encounter issues, try copying the URL directly from the share button on Suno's website and ensure the song is publicly accessible.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6 bg-white dark:bg-dark-secondary rounded-xl shadow-premium dark:shadow-premium-dark">
+                        <button class="faq-toggle flex justify-between items-center w-full focus:outline-none group" aria-expanded="false">
+                            <h3 class="text-lg font-semibold text-left">What should I include in my Suno prompts for best results?</h3>
+                            <svg class="w-5 h-5 text-primary transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden mt-4 text-gray-600 dark:text-gray-300">
+                            <p>For the best results when creating songs with Suno AI, consider including these elements in your prompts:</p>
+                            <ul class="list-disc list-inside mt-2 ml-4">
+                                <li>Genre (e.g., pop, rock, EDM, jazz)</li>
+                                <li>Vocal style (e.g., male vocals, female vocals, rap)</li>
+                                <li>Instruments (e.g., acoustic guitar, synth bass, violin)</li>
+                                <li>Mood/emotion (e.g., upbeat, melancholic, energetic)</li>
+                                <li>Tempo (e.g., fast, slow, moderate)</li>
+                                <li>Lyrical themes or specific lyrics</li>
+                                <li>Production style (e.g., lo-fi, polished, raw)</li>
+                                <li>Reference artists or songs for style inspiration</li>
+                            </ul>
+                            <p class="mt-2">Being specific and detailed in your prompts typically leads to better and more targeted results.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- AdSense Placeholder - Bottom -->
+        <div class="ad-container w-full h-36 my-10">
+            <div class="text-sm text-gray-400 dark:text-gray-500">Advertisement</div>
+        </div>
+    </main>
+    
+    <footer class="mt-12 bg-gray-100 dark:bg-dark-secondary py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <div class="flex justify-center items-center mb-4">
+                    <svg class="h-8 w-8 mr-2" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="25" cy="25" r="22" stroke="#5D5CDE" stroke-width="3" />
+                        <path d="M32 25C32 28.866 28.866 32 25 32C21.134 32 18 28.866 18 25C18 21.134 21.134 18 25 18C28.866 18 32 21.134 32 25Z" fill="#5D5CDE" />
+                        <rect x="24" y="10" width="2" height="8" rx="1" fill="#5D5CDE" />
+                        <rect x="24" y="32" width="2" height="8" rx="1" fill="#5D5CDE" />
+                        <rect x="40" y="24" width="2" height="8" rx="1" transform="rotate(90 40 24)" fill="#5D5CDE" />
+                        <rect x="18" y="24" width="2" height="8" rx="1" transform="rotate(90 18 24)" fill="#5D5CDE" />
+                    </svg>
+                    <span class="font-bold text-xl text-gray-700 dark:text-gray-200">Suno MP3 Downloader</span>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300 mb-2">Free online tool to download AI-generated music</p>
+                <p class="text-gray-500 dark:text-gray-400 text-sm">This tool is not affiliated with Suno AI.</p>
+                <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">For personal use only. Please respect intellectual property rights.</p>
+				
+                <div class="mt-4 flex justify-center space-x-4">
+                    <a href="#" class="text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-secondary transition duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-secondary transition duration-300">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-secondary transition duration-300">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Hidden Download Link -->
+    <a id="hidden-download" class="hidden" download></a>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-4 right-4 px-6 py-3 rounded-lg bg-gray-800 text-white transform translate-y-20 opacity-0 transition-all duration-300 z-50 hidden shadow-lg">
+        <span id="toast-message">Link copied to clipboard!</span>
+    </div>
+
+    <script>
+      function _0x6007(){const _0x4719c0=['XSISd','fssZB','ON:','\x20mt-2','tSibling','theme-togg','open','find\x20a\x20val','sRKIF','body','toast-mess','e\x20URL\x20with','getElement','r/sharer.p','Generate\x20b','\x20chars\x20of\x20','getAttribu','FVuVy','se\x20check\x20t','TjoGg','gGBgm','age\x22]','Could\x20not\x20','insertBefo','.text-gray','SYdJu','5928NxnrGM','auMLc','match','NiFJu','rl?url=','toLocaleSt','10PaYNMM','trim','menu-items','y-20','startsWith','LjTis','ngth','PMAck','on\x20again.','392259IuFQIY','\x20bytes)','DocgC','book','kuZkE','menu-toggl','rred,\x20tryi','JyThM','submit','Download\x20','WrTtW','attern\x204:','Error\x20sett','search','catch','\x20try\x20again','OHLFZ','value','ld:','hp?u=','ate','No\x20prompt\x20','iadMs','Error\x20prep','copy','ain.','4|0|1|2|3','ai-model','alt','Resolved\x20s','Warning:\x20A','creation-d','ement','doCEj','ault','ef=\x22https:','gpBVY','data.\x20Plea','EEGXp','suno-song','kzRFl','attern\x205:','oVIcF','.com/share','loading','ase\x20Click\x20','ing\x20API\x20JS','WtxEX','GzbPW','<u>Dunia\x20I','LnKIN','er\x20a\x20valid','download','ent\x20type:\x20','loading-te','sapp','ing\x20up\x20dow','se\x20try\x20aga','tLDhh','shIBx','play-count','00\x20text-sm','TolAv','t\x20URL:','torAll','500\x20dark:t','resolve\x20sh','content-le','access\x20to\x20','irect\x20patt','GJYeK','download-b','AyZbb','UQykQ','le-light-i','Unknown','short\x20URL.','includes','View','piCtW','i.whatsapp','txhya','content','addEventLi','First\x201000','kZgCE','Uuwvm','scrollInto','ent','orm','Resolving\x20','blob','ong/','rn\x201','lving\x20shor','cnDpl','Preparing\x20','\x22twitter:i',',\x20size:\x20','oSwIv','song-image','share-what','ext-gray-4','o\x20short\x20UR','toggle','n1.suno.ai','className','clipboard','t\x20for\x20the\x20','no.com/son','PFfcZ','cJjzP','\x20found','location','ad\x20complet','numeric','he\x20URL\x20and','VkfET','copy-link','https://tw','AxZuv','WLldb','svg','FAhJt','createObje','parentNode','er-song-ar','QIckV','true','oQmnu','tLjuA','en-US','KwHWh','\x20-\x20Artwork','aria-expan','i.allorigi','w.facebook','.\x20Please\x20C','uimGt','rRevL','ns.win/get','add','yaOkB','udio\x20file\x20','querySelec','Error\x20reso','qftjZ','\x20data','cbvqt','href','4|0','text-gray-','SWcou','get','meta[name=','NtpUX','Error\x20with','gUaQv','\x20button\x20ag','tErlU','cWtDR','onRqP','headers','12776UJnnxT','WEJoP','mAVFQ','dMpvu','nextElemen','ort\x20URL','2-digit','vtTRv','2762580RZtYdA','JQtko','age','contents','RHptm','Unknown\x20So','parse','\x20bytes','length','audio-play','src','Found\x20song','content-ty','textConten','N\x20data:','WdUrN','pathname','con','ate\x20button','jRRYo','GYJWi','select','song\x20to\x20lo','text=','innerHTML','ng\x20data.\x20P','forEach','soYOY','IVAzc','/song?shor','Error\x20fetc','jrmuN','Found\x20MP3\x20','hing\x20song\x20','First\x20500\x20','1034712Udwedt','le-dark-ic','NGlom','XQrcz','usvBe','tatus','n\x20availabl','\x20API\x20appro','execComman','dark','mcyfI','intent/twe','warn','eXfiq','fetch\x20audi','ong></a>','ring','DVdYz','tId=','xIkpA','sm.mt-2','SKwbK','QgpXu','urRmH','No\x20content','CtLJk','_blank','ById','HkvhP','.faq-toggl','snZjz','qiLgP','nload','FORCw','ndy\x20Black\x20','textarea','ach:','qsGsT','ern:','o\x20file.\x20St','tmiHb','SsosH','&text=','Found\x20imag','d\x20to\x20clipb','Error\x20pars','fetch\x20song','Error:','split','&url=','.com\x22\x20targ','gram','rty=\x22og:ti','\x20Click\x20Gen','erate\x20butt','tsnWb','eDvbL','Fetching\x20s','?url=','YDQek','hidden','setAttribu','createElem','XlWbh','JxTGg','ksmez','aring\x20down','JRfNi','KlBRZ','lease\x20Clic','tor','vgpnE','share-tele','load.\x20Plea','song-title','YxUBO','meta[prope','vUtpm','rotate-180','opacity-0','classList','DOMContent','URL\x20with\x20d','log','4315LtKifx','title','\x20found\x20in\x20','pushState','4437BeZKyf','attern\x202:','eGGuO','IfRwo','URL\x20in\x20aud','vAacX','CNcyj','lick\x20Gener','content:','CAQqK','KGxsU','DGlUe','nKxix','tle\x22]','\x22><strong>','uVtHP','nload:','ely\x20first','me/share/u','brbab','tarted!','fpOvv','preventDef','io_url\x20fie','revokeObje','rwEmP','itter.com/','XTBRS','message','/placehold','iAkXr','VXpzf','download-s','3\x20Download','\x22twitter:t','//dunia.it','NvNkw','appendChil','OVeDL','click','removeChil','wpene','AyDQL','Failed\x20to\x20','.com/send?','xNSIE','mage\x22]','hidden-dow','\x20Suno\x20shar','MKTzx','https://ww','et=\x22_blank','id\x20MP3\x20URL','ABVOT','translate-','rty=\x22og:im','\x20ID\x20with\x20p','attern\x203:','json',':text-gray','from\x20<a\x20hr','Cleaned\x20MP','stener','Link\x20copie','qigsR','t\x20access\x20t','e\x20URL.\x20Ple','QgzwS','ng\x20direct\x20','https://su','download-f','LRpcx','contains','No\x20song\x20ID','cOehG','https://t.','Please\x20ent','short\x20URL','EhQiu','remove','3|2|1|6|5|','download..','ying\x20direc','writeText','jdQtB','nextSiblin','history','.mp3','-500.dark\x5c','bnRyf','HtErM','KEFLv','KLVSC','attern\x201:','yTQvn','PI\x20call:','smooth','suno.com/s','vRZQo','rn\x202','then','et?text=','IPZda','song-promp','ZQytJ','results','vfWII','lfbkB','gZfvF','https://cd','https://ap','RUDUi','Loaded','fKghb','status','Code\x20by\x20He','substring','T\x20Communit','suno-url','iNPdJ','hnihc','itle\x22]','pop','ly\x20small\x20(','\x20alt\x20patte','k\x20Generate','ong\x20data..','URL\x20in\x20JSO','3\x20URL:','replace','\x20in\x20the\x20so','is\x20unusual','atus:\x20','oard!','a[href^=\x22#','\x20found,\x20tr','error','a</u></str','Please\x20wai','4122894LuoMhm','ter','toast','informatio','\x20-\x20Suno\x20MP','sUSCw','rYaka','share-face','ded','y\x20Indonesi','documentEl','\x20ID\x20with\x20A','ctURL','\x20again.','utton\x20agai','BOmYp','chars:','-400.text-','12248607iZYNzG','hort\x20URL\x20t','long','error-mess','Error\x20occu','SlIIL','in.\x20Please','tMIXI','no.com/api','Download\x20s','Audio\x20cont','share-twit','JafNi','%20','twork.jpg'];_0x6007=function(){return _0x4719c0;};return _0x6007();}const _0x13dc72=_0x4f3e;(function(_0x56973b,_0x151551){const _0x4fbcaf=_0x4f3e,_0x1d4c78=_0x56973b();while(!![]){try{const _0x148f7a=-parseInt(_0x4fbcaf(0x2c9))/(-0x2128+-0x2353+0x447c)+-parseInt(_0x4fbcaf(0x1f2))/(-0x1c15*0x1+-0x1*0x6f6+-0x1*-0x230d)*(-parseInt(_0x4fbcaf(0x1fb))/(0x1195*-0x1+-0xfee+0x2186))+parseInt(_0x4fbcaf(0x1ec))/(-0x19b*0x10+-0x149d+-0x2e51*-0x1)*(parseInt(_0x4fbcaf(0x31d))/(0x269f+0x893+-0x2f2d))+parseInt(_0x4fbcaf(0x1b1))/(-0x1741+0x6b9+0x108e)+-parseInt(_0x4fbcaf(0x1c3))/(0x5ab+-0x19a2*-0x1+0x1f46*-0x1)+parseInt(_0x4fbcaf(0x29e))/(0x163f+0x856*-0x4+0x25*0x4d)*(parseInt(_0x4fbcaf(0x321))/(0x1b9f+0x7d*-0x2e+-0x4*0x148))+parseInt(_0x4fbcaf(0x2a6))/(0x2013+-0xdb7+-0x1252);if(_0x148f7a===_0x151551)break;else _0x1d4c78['push'](_0x1d4c78['shift']());}catch(_0x4d997f){_0x1d4c78['push'](_0x1d4c78['shift']());}}}(_0x6007,-0x1aa436+0x9f6a7+0x1*0x1e6511));let currentAudioBlob=null,currentBlobUrl=null,songTitle=_0x13dc72(0x222);function initDarkMode(){const _0x29977f=_0x13dc72,_0x35c28b={'DGlUe':_0x29977f(0x2d2),'LnKIN':_0x29977f(0x305),'usvBe':_0x29977f(0x1d7)+'le','NvNkw':_0x29977f(0x1d7)+_0x29977f(0x2ca)+'on','JRfNi':_0x29977f(0x1d7)+_0x29977f(0x245)+_0x29977f(0x2b7),'mAVFQ':_0x29977f(0x14d)},_0x3e909f=document[_0x29977f(0x1de)+_0x29977f(0x2e4)](_0x35c28b[_0x29977f(0x2cd)]),_0x3122e0=document[_0x29977f(0x1de)+_0x29977f(0x2e4)](_0x35c28b[_0x29977f(0x14a)]),_0x2151b3=document[_0x29977f(0x1de)+_0x29977f(0x2e4)](_0x35c28b[_0x29977f(0x30c)]);document[_0x29977f(0x1bb)+_0x29977f(0x21b)][_0x29977f(0x319)][_0x29977f(0x16e)](_0x35c28b[_0x29977f(0x32c)])?(_0x3122e0[_0x29977f(0x319)][_0x29977f(0x175)](_0x35c28b[_0x29977f(0x22d)]),_0x2151b3[_0x29977f(0x319)][_0x29977f(0x288)](_0x35c28b[_0x29977f(0x22d)])):(_0x2151b3[_0x29977f(0x319)][_0x29977f(0x175)](_0x35c28b[_0x29977f(0x22d)]),_0x3122e0[_0x29977f(0x319)][_0x29977f(0x288)](_0x35c28b[_0x29977f(0x22d)])),_0x3e909f[_0x29977f(0x24e)+_0x29977f(0x164)](_0x35c28b[_0x29977f(0x2a0)],function(){const _0x114200=_0x29977f;document[_0x114200(0x1bb)+_0x114200(0x21b)][_0x114200(0x319)][_0x114200(0x263)](_0x35c28b[_0x114200(0x32c)]),document[_0x114200(0x1bb)+_0x114200(0x21b)][_0x114200(0x319)][_0x114200(0x16e)](_0x35c28b[_0x114200(0x32c)])?(_0x2151b3[_0x114200(0x319)][_0x114200(0x288)](_0x35c28b[_0x114200(0x22d)]),_0x3122e0[_0x114200(0x319)][_0x114200(0x175)](_0x35c28b[_0x114200(0x22d)])):(_0x3122e0[_0x114200(0x319)][_0x114200(0x288)](_0x35c28b[_0x114200(0x22d)]),_0x2151b3[_0x114200(0x319)][_0x114200(0x175)](_0x35c28b[_0x114200(0x22d)]));});}async function resolveShortSunoUrl(_0x5f3755){const _0x53af77=_0x13dc72,_0x16eadf={'tmiHb':_0x53af77(0x231)+'xt','kZgCE':_0x53af77(0x255)+_0x53af77(0x247)+'..','piCtW':function(_0x338427,_0x498c24){return _0x338427(_0x498c24);},'AyZbb':_0x53af77(0x151)+_0x53af77(0x23d)+_0x53af77(0x2a3),'tErlU':_0x53af77(0x2e1)+_0x53af77(0x31f)+_0x53af77(0x173),'IVAzc':_0x53af77(0x24f)+_0x53af77(0x1e1)+_0x53af77(0x329),'snZjz':_0x53af77(0x2b1)+_0x53af77(0x15e)+_0x53af77(0x183),'GYJWi':_0x53af77(0x2b1)+_0x53af77(0x15e)+_0x53af77(0x322),'UQykQ':_0x53af77(0x2b1)+_0x53af77(0x15e)+_0x53af77(0x15f),'LjTis':_0x53af77(0x2b1)+_0x53af77(0x15e)+_0x53af77(0x206),'bnRyf':_0x53af77(0x2b1)+_0x53af77(0x15e)+_0x53af77(0x224),'cnDpl':_0x53af77(0x2b1)+_0x53af77(0x1bc)+_0x53af77(0x185),'XSISd':_0x53af77(0x2f6)+_0x53af77(0x229)+_0x53af77(0x1d4),'RUDUi':_0x53af77(0x297)+_0x53af77(0x2d0)+_0x53af77(0x2ed),'XQrcz':_0x53af77(0x218)+_0x53af77(0x1c4)+'o:','XlWbh':_0x53af77(0x16f)+_0x53af77(0x1ad)+_0x53af77(0x178)+_0x53af77(0x167)+_0x53af77(0x262)+'L','HtErM':_0x53af77(0x28c)+_0x53af77(0x259)+_0x53af77(0x23a),'EEGXp':_0x53af77(0x1c7)+_0x53af77(0x201)+_0x53af77(0x16a)+_0x53af77(0x23f)+_0x53af77(0x173)};document[_0x53af77(0x1de)+_0x53af77(0x2e4)](_0x16eadf[_0x53af77(0x2f1)])[_0x53af77(0x2b3)+'t']=_0x16eadf[_0x53af77(0x250)];try{const _0x32cd76=_0x53af77(0x194)+_0x53af77(0x282)+_0x53af77(0x287)+_0x53af77(0x303)+_0x16eadf[_0x53af77(0x24a)](encodeURIComponent,_0x5f3755),_0x849a16=await _0x16eadf[_0x53af77(0x24a)](fetch,_0x32cd76);if(!_0x849a16['ok'])throw new Error(_0x16eadf[_0x53af77(0x243)]);const _0x3dc347=await _0x849a16[_0x53af77(0x160)]();if(!_0x3dc347[_0x53af77(0x2a9)])throw new Error(_0x16eadf[_0x53af77(0x29a)]);const _0x52da01=_0x5f3755[_0x53af77(0x2f9)]('/')[_0x53af77(0x1a0)]();console[_0x53af77(0x31c)](_0x16eadf[_0x53af77(0x2c2)],_0x3dc347[_0x53af77(0x2a9)][_0x53af77(0x19a)](-0xd8+0x1274+-0x119c,0x2f7*0x2+-0x939+0x1*0x733));let _0x5d2f87=null;const _0x210e22=/NEXT_REDIRECT[^\/]*\/song\/([a-zA-Z0-9-]+)/,_0x19afc7=_0x3dc347[_0x53af77(0x2a9)][_0x53af77(0x1ee)](_0x210e22);_0x19afc7&&_0x19afc7[-0x144c+0x5ba+0x29*0x5b]&&(_0x5d2f87=_0x19afc7[0x27e+0x1cde+0x15d*-0x17],console[_0x53af77(0x31c)](_0x16eadf[_0x53af77(0x2e7)],_0x5d2f87));if(!_0x5d2f87){const _0x5bebc2=/<link\s+rel="canonical"\s+href="https:\/\/suno\.com\/song\/([a-zA-Z0-9-]+)/i,_0x34ef80=_0x3dc347[_0x53af77(0x2a9)][_0x53af77(0x1ee)](_0x5bebc2);_0x34ef80&&_0x34ef80[-0x10c3*0x1+0x56*-0x6a+-0x1*-0x3460]&&(_0x5d2f87=_0x34ef80[0x17f5+0x7cf*0x4+-0x6e6*0x8],console[_0x53af77(0x31c)](_0x16eadf[_0x53af77(0x2ba)],_0x5d2f87));}if(!_0x5d2f87){const _0x1d5492=/<meta\s+property="og:url"\s+content="https:\/\/suno\.com\/song\/([a-zA-Z0-9-]+)/i,_0x2195e1=_0x3dc347[_0x53af77(0x2a9)][_0x53af77(0x1ee)](_0x1d5492);_0x2195e1&&_0x2195e1[-0x1*0xe66+0x566+0x901]&&(_0x5d2f87=_0x2195e1[-0x1c8a+-0x85e+0xb*0x35b],console[_0x53af77(0x31c)](_0x16eadf[_0x53af77(0x244)],_0x5d2f87));}if(!_0x5d2f87){const _0x21254b=/og:url"\s*content="[^"]*\/song\/([a-zA-Z0-9-]+)/i,_0x2a2081=_0x3dc347[_0x53af77(0x2a9)][_0x53af77(0x1ee)](_0x21254b);_0x2a2081&&_0x2a2081[-0x16cb+-0xb87+-0x2253*-0x1]&&(_0x5d2f87=_0x2a2081[-0x60e+0x12e*-0x1+0x73d],console[_0x53af77(0x31c)](_0x16eadf[_0x53af77(0x1f7)],_0x5d2f87));}if(!_0x5d2f87){const _0xb1c698=/"song":[^}]*"id":"([a-zA-Z0-9-]+)"/,_0x3c0f6b=_0x3dc347[_0x53af77(0x2a9)][_0x53af77(0x1ee)](_0xb1c698);_0x3c0f6b&&_0x3c0f6b[-0x1675*0x1+-0xda5+0x2c7*0xd]&&(_0x5d2f87=_0x3c0f6b[-0x24b*0x11+0x5f*-0x4+0x143c*0x2],console[_0x53af77(0x31c)](_0x16eadf[_0x53af77(0x17f)],_0x5d2f87));}if(!_0x5d2f87)try{const _0x36530e=_0x53af77(0x194)+_0x53af77(0x282)+_0x53af77(0x287)+_0x53af77(0x303)+_0x16eadf[_0x53af77(0x24a)](encodeURIComponent,_0x53af77(0x16b)+_0x53af77(0x1cb)+_0x53af77(0x2c3)+_0x53af77(0x2db)+_0x52da01),_0x2009f1=await _0x16eadf[_0x53af77(0x24a)](fetch,_0x36530e);if(_0x2009f1['ok']){const _0x192ebf=await _0x2009f1[_0x53af77(0x160)]();if(_0x192ebf[_0x53af77(0x2a9)])try{const _0x391610=JSON[_0x53af77(0x2ac)](_0x192ebf[_0x53af77(0x2a9)]);_0x391610&&_0x391610['id']&&(_0x5d2f87=_0x391610['id'],console[_0x53af77(0x31c)](_0x16eadf[_0x53af77(0x25a)],_0x5d2f87));}catch(_0x41b237){console[_0x53af77(0x1ae)](_0x16eadf[_0x53af77(0x1d2)],_0x41b237);}}}catch(_0x1e7877){console[_0x53af77(0x1ae)](_0x16eadf[_0x53af77(0x195)],_0x1e7877);}if(_0x5d2f87){const _0x5e221b=_0x53af77(0x16b)+_0x53af77(0x268)+'g/'+_0x5d2f87;return console[_0x53af77(0x31c)](_0x16eadf[_0x53af77(0x2cc)],_0x5e221b),_0x5e221b;}else return console[_0x53af77(0x31c)](_0x16eadf[_0x53af77(0x308)]),_0x5f3755;}catch(_0x35f675){return console[_0x53af77(0x1ae)](_0x16eadf[_0x53af77(0x180)],_0x35f675),console[_0x53af77(0x31c)](_0x16eadf[_0x53af77(0x221)]),_0x5f3755;}}async function processSunoUrl(_0x5251cb){const _0x3c362d=_0x13dc72,_0x36226a={'oQmnu':_0x3c362d(0x187)+_0x3c362d(0x257),'gGBgm':_0x3c362d(0x187)+'/','SKwbK':_0x3c362d(0x1c6)+_0x3c362d(0x2a8),'FAhJt':_0x3c362d(0x305),'WdUrN':_0x3c362d(0x172)+_0x3c362d(0x22e)+_0x3c362d(0x156)+_0x3c362d(0x168)+_0x3c362d(0x228)+_0x3c362d(0x1e0)+_0x3c362d(0x1bf)+'n.','jrmuN':_0x3c362d(0x18f),'fpOvv':_0x3c362d(0x227),'uimGt':_0x3c362d(0x146)+_0x3c362d(0x2ce),'ABVOT':function(_0x2d3941,_0x225e27){return _0x2d3941(_0x225e27);},'wpene':_0x3c362d(0x28c)+_0x3c362d(0x259)+_0x3c362d(0x23a),'JxTGg':_0x3c362d(0x231)+'xt','qftjZ':_0x3c362d(0x302)+_0x3c362d(0x1a4)+'.','QgzwS':function(_0x601219,_0x5bfaaf){return _0x601219(_0x5bfaaf);},'onRqP':_0x3c362d(0x151)+_0x3c362d(0x2f7)+_0x3c362d(0x28e),'WLldb':_0x3c362d(0x2e1)+_0x3c362d(0x26b),'JQtko':_0x3c362d(0x2c8)+_0x3c362d(0x1c1),'tsnWb':_0x3c362d(0x2ab)+'ng','KGxsU':function(_0x4344fb,_0x9c834d){return _0x4344fb>_0x9c834d;},'iAkXr':_0x3c362d(0x2c6)+_0x3c362d(0x31b)+_0x3c362d(0x240)+_0x3c362d(0x2ef),'cbvqt':_0x3c362d(0x2c6)+_0x3c362d(0x1a5)+_0x3c362d(0x2b4),'PFfcZ':_0x3c362d(0x2c6)+_0x3c362d(0x325)+_0x3c362d(0x13d)+_0x3c362d(0x20d),'sRKIF':_0x3c362d(0x163)+_0x3c362d(0x1a6),'rRevL':_0x3c362d(0x1e8)+_0x3c362d(0x1d9)+_0x3c362d(0x15a)+_0x3c362d(0x1a8)+_0x3c362d(0x2bf)+_0x3c362d(0x30e)+_0x3c362d(0x1a3)+_0x3c362d(0x299)+_0x3c362d(0x214),'KwHWh':_0x3c362d(0x2f4)+_0x3c362d(0x1dd)+_0x3c362d(0x1a2)+_0x3c362d(0x258),'AyDQL':_0x3c362d(0x2f4)+_0x3c362d(0x1dd)+_0x3c362d(0x1a2)+_0x3c362d(0x189),'txhya':_0x3c362d(0x193)+_0x3c362d(0x264)+_0x3c362d(0x143)+_0x3c362d(0x279)+_0x3c362d(0x1d1),'CtLJk':_0x3c362d(0x246),'xNSIE':_0x3c362d(0x27e),'IPZda':_0x3c362d(0x26e),'SlIIL':_0x3c362d(0x1c5),'VkfET':_0x3c362d(0x2a4),'NiFJu':_0x3c362d(0x210)+_0x3c362d(0x1b4)+_0x3c362d(0x2cf)+'e','vtTRv':_0x3c362d(0x313),'FORCw':_0x3c362d(0x25f),'gZfvF':_0x3c362d(0x21a)+_0x3c362d(0x20f),'jdQtB':_0x3c362d(0x237),'CAQqK':_0x3c362d(0x216),'vAacX':_0x3c362d(0x18d)+'t','Uuwvm':function(_0x5a8a81,_0x1321d9,_0x27c816){return _0x5a8a81(_0x1321d9,_0x27c816);},'tMIXI':_0x3c362d(0x2af)+'er','GJYeK':_0x3c362d(0x25b)+_0x3c362d(0x177)+'.','KLVSC':function(_0x31cf06,_0x279bcf){return _0x31cf06(_0x279bcf);},'kzRFl':_0x3c362d(0x2b2)+'pe','mcyfI':_0x3c362d(0x23e)+_0x3c362d(0x1f8),'urRmH':function(_0x28db12,_0x578ee5){return _0x28db12<_0x578ee5;},'CNcyj':function(_0x400230,_0x529922){return _0x400230(_0x529922);},'jRRYo':_0x3c362d(0x207)+_0x3c362d(0x233)+_0x3c362d(0x331),'vgpnE':_0x3c362d(0x212)+_0x3c362d(0x30b)+_0x3c362d(0x312)+_0x3c362d(0x234)+_0x3c362d(0x1c9)+_0x3c362d(0x2fe)+_0x3c362d(0x2ff)+_0x3c362d(0x1fa),'rwEmP':_0x3c362d(0x186),'iNPdJ':_0x3c362d(0x2f8),'KlBRZ':_0x3c362d(0x2c4)+_0x3c362d(0x2c7)+_0x3c362d(0x220)+_0x3c362d(0x1e4)+_0x3c362d(0x26f)+_0x3c362d(0x20a)+_0x3c362d(0x284)+_0x3c362d(0x328)+_0x3c362d(0x2b8)+_0x3c362d(0x1be)};if(!_0x5251cb||!_0x5251cb[_0x3c362d(0x248)](_0x36226a[_0x3c362d(0x27c)])&&!_0x5251cb[_0x3c362d(0x248)](_0x36226a[_0x3c362d(0x1e6)])){document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x2de)])[_0x3c362d(0x319)][_0x3c362d(0x175)](_0x36226a[_0x3c362d(0x276)]),document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x2de)])[_0x3c362d(0x28b)+_0x3c362d(0x30f)]('p')[_0x3c362d(0x2b3)+'t']=_0x36226a[_0x3c362d(0x2b5)];return;}document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x2de)])[_0x3c362d(0x319)][_0x3c362d(0x288)](_0x36226a[_0x3c362d(0x276)]),document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x2c5)])[_0x3c362d(0x319)][_0x3c362d(0x288)](_0x36226a[_0x3c362d(0x276)]),document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x336)])[_0x3c362d(0x319)][_0x3c362d(0x175)](_0x36226a[_0x3c362d(0x276)]),document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x285)])[_0x3c362d(0x319)][_0x3c362d(0x288)](_0x36226a[_0x3c362d(0x276)]);try{let _0x12b910=_0x5251cb;if(_0x5251cb[_0x3c362d(0x248)](_0x36226a[_0x3c362d(0x1e6)]))try{_0x12b910=await _0x36226a[_0x3c362d(0x15b)](resolveShortSunoUrl,_0x5251cb);}catch(_0x37fd1c){console[_0x3c362d(0x1ae)](_0x36226a[_0x3c362d(0x14f)],_0x37fd1c),_0x12b910=_0x5251cb;}document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x309)])[_0x3c362d(0x2b3)+'t']=_0x36226a[_0x3c362d(0x28d)];const _0x2d24bc=_0x3c362d(0x194)+_0x3c362d(0x282)+_0x3c362d(0x287)+_0x3c362d(0x303)+_0x36226a[_0x3c362d(0x15b)](encodeURIComponent,_0x12b910),_0x45dcd3=await _0x36226a[_0x3c362d(0x169)](fetch,_0x2d24bc);if(!_0x45dcd3['ok'])throw new Error(_0x36226a[_0x3c362d(0x29c)]);const _0x246438=await _0x45dcd3[_0x3c362d(0x160)]();if(!_0x246438[_0x3c362d(0x2a9)])throw new Error(_0x36226a[_0x3c362d(0x274)]);const _0x16dfc3=_0x246438[_0x3c362d(0x2a9)];console[_0x3c362d(0x31c)](_0x36226a[_0x3c362d(0x2a7)],_0x16dfc3[_0x3c362d(0x19a)](0x5*-0x2b3+-0x15f7+0x33*0xb2,-0xf99*-0x2+-0x20ab+0x36d));const _0xc22534=_0x16dfc3[_0x3c362d(0x1ee)](/\\\"title\\\":\\\"(.*?)\\\"/),_0x5996e1=_0xc22534?_0xc22534[-0x1*0xc8f+-0x1cf+0xe5f][_0x3c362d(0x1a7)](/\\\\/g,''):_0x36226a[_0x3c362d(0x300)];songTitle=_0x5996e1;let _0x292902=null;const _0x156f67=[/https:\/\/cdn1\.suno\.ai\/[a-zA-Z0-9-]+\.mp3/g,/<meta\s+property="og:audio"\s+content="(https:\/\/cdn1\.suno\.ai\/[^"]+\.mp3)"/i,/\\\"property\\\":\\\"og:audio\\\",\\\"content\\\":\\\"(https:\/\/cdn1\.suno\.ai\/[^\\\"]+\.mp3)\\\"/];for(const _0x216077 of _0x156f67){const _0x4f807a=_0x16dfc3[_0x3c362d(0x1ee)](_0x216077);if(_0x4f807a&&_0x36226a[_0x3c362d(0x32b)](_0x4f807a[_0x3c362d(0x2ae)],-0x15e9+-0x17c2+-0x2dab*-0x1)){const _0x6d1781=_0x4f807a[0x4*0x68b+0x13d*0xb+-0x27cb][_0x3c362d(0x1ee)](_0x216077);_0x6d1781&&_0x6d1781[0x1*0x4a7+-0x428+-0x7e*0x1]?_0x292902=_0x6d1781[-0x39a+0x481*0x1+-0xe6]:_0x292902=_0x4f807a[-0x1499+0x26f*0x5+0x86e];console[_0x3c362d(0x31c)](_0x36226a[_0x3c362d(0x144)],_0x292902);break;}}if(!_0x292902){const _0x589db2=/"property":"og:audio","content":"(https:\/\/cdn1\.suno\.ai\/[^"]+\.mp3)"/,_0x404d43=_0x16dfc3[_0x3c362d(0x1ee)](_0x589db2);_0x404d43&&_0x404d43[0x2c0*0x2+-0x8e1+0x1*0x362]&&(_0x292902=_0x404d43[-0x472+0x2675+-0x2202],console[_0x3c362d(0x31c)](_0x36226a[_0x3c362d(0x28f)],_0x292902));}if(!_0x292902){const _0x595cef=_0x16dfc3[_0x3c362d(0x1ee)](/\\\"audio_url\\\":\\\"(https:\/\/cdn1\.suno\.ai\/[^\\\"]+\.mp3)\\\"/);_0x595cef&&_0x595cef[-0x1ea3+0x124f+-0x7*-0x1c3]&&(_0x292902=_0x595cef[0x24f5+0x65d+-0x2b51][_0x3c362d(0x1a7)](/\\\\/g,''),console[_0x3c362d(0x31c)](_0x36226a[_0x3c362d(0x269)],_0x292902));}if(_0x292902){const _0x28c749=_0x292902[_0x3c362d(0x1ee)](/(https:\/\/cdn1\.suno\.ai\/[a-zA-Z0-9-]+\.mp3)/);_0x28c749&&_0x28c749[-0x1a25+0x322+-0x7ac*-0x3]&&(_0x292902=_0x28c749[0x45*0x71+0x938+-0x27ac],console[_0x3c362d(0x31c)](_0x36226a[_0x3c362d(0x1da)],_0x292902));}if(!_0x292902)throw new Error(_0x36226a[_0x3c362d(0x286)]);const _0x4f10cb=_0x16dfc3[_0x3c362d(0x1ee)](/\\\"image_url\\\":\\\"(.*?)\\\"/);let _0x475c45=_0x4f10cb?_0x4f10cb[0xd84+-0xc16+-0x16d][_0x3c362d(0x1a7)](/\\\\/g,''):null;if(!_0x475c45){const _0xc72e09=/"image_url":"([^"]+)"/,_0x5af68e=_0x16dfc3[_0x3c362d(0x1ee)](_0xc72e09);_0x5af68e&&_0x5af68e[-0x611*0x5+-0x481*0x8+-0xd46*-0x5]&&(_0x475c45=_0x5af68e[0x312*-0x1+0x1e44+-0x1b31*0x1][_0x3c362d(0x1a7)](/\\\\/g,''),console[_0x3c362d(0x31c)](_0x36226a[_0x3c362d(0x27f)]));if(!_0x475c45){const _0x4bbb6d=/<meta\s+property="og:image"\s+content="([^"]+)"/i,_0xb3c009=_0x16dfc3[_0x3c362d(0x1ee)](_0x4bbb6d);_0xb3c009&&_0xb3c009[-0x1647+-0x25c7+-0xcd*-0x4b]&&(_0x475c45=_0xb3c009[-0x1*-0x1b2f+0x17d4+-0x3302],console[_0x3c362d(0x31c)](_0x36226a[_0x3c362d(0x150)]));}}!_0x475c45&&(_0x475c45=_0x36226a[_0x3c362d(0x24c)]);const _0x48cf14=_0x16dfc3[_0x3c362d(0x1ee)](/\\\"created_at\\\":\\\"(.*?)\\\"/);let _0x2f660b=_0x36226a[_0x3c362d(0x2e2)];if(_0x48cf14){const _0x22bff7=new Date(_0x48cf14[-0x1e7+0x1*0x2608+-0x8*0x484]);_0x2f660b=_0x22bff7[_0x3c362d(0x1f1)+_0x3c362d(0x2d9)](_0x36226a[_0x3c362d(0x153)],{'year':_0x36226a[_0x3c362d(0x18c)],'month':_0x36226a[_0x3c362d(0x1c8)],'day':_0x36226a[_0x3c362d(0x18c)],'hour':_0x36226a[_0x3c362d(0x270)],'minute':_0x36226a[_0x3c362d(0x270)]});}else{const _0x5b689a=/"created_at":"([^"]+)"/,_0xb5a806=_0x16dfc3[_0x3c362d(0x1ee)](_0x5b689a);if(_0xb5a806&&_0xb5a806[0x129e+0x6bb+0x8*-0x32b]){const _0x506c95=new Date(_0xb5a806[-0xa14+-0x9*-0x3d1+-0x1844*0x1]);_0x2f660b=_0x506c95[_0x3c362d(0x1f1)+_0x3c362d(0x2d9)](_0x36226a[_0x3c362d(0x153)],{'year':_0x36226a[_0x3c362d(0x18c)],'month':_0x36226a[_0x3c362d(0x1c8)],'day':_0x36226a[_0x3c362d(0x18c)],'hour':_0x36226a[_0x3c362d(0x270)],'minute':_0x36226a[_0x3c362d(0x270)]});}}const _0x3d2796=_0x16dfc3[_0x3c362d(0x1ee)](/\\\"play_count\\\":(\\d+)/);let _0x270e75='0';if(_0x3d2796)_0x270e75=_0x3d2796[0x1*0x303+0xa3*-0xc+0x4a2];else{const _0x5ba0ad=/"play_count":(\d+)/,_0x464ebf=_0x16dfc3[_0x3c362d(0x1ee)](_0x5ba0ad);_0x464ebf&&_0x464ebf[0x2ff+-0x13cd+0x10cf]&&(_0x270e75=_0x464ebf[0x1d58+-0x8f5+-0x2*0xa31]);}const _0x3c8f16=_0x16dfc3[_0x3c362d(0x1ee)](/\\\"model_name\\\":\\\"(.*?)\\\"/);let _0x4a125b=_0x36226a[_0x3c362d(0x2e2)];if(_0x3c8f16)_0x4a125b=_0x3c8f16[0x406*0x6+-0x10d*0x15+-0x212];else{const _0x4860b5=/"model_name":"([^"]+)"/,_0x33b1ab=_0x16dfc3[_0x3c362d(0x1ee)](_0x4860b5);_0x33b1ab&&_0x33b1ab[-0x1619+0x146c+0x1ae]&&(_0x4a125b=_0x33b1ab[-0x283+-0xd10*-0x2+-0x2*0xbce]);}const _0x539303=_0x16dfc3[_0x3c362d(0x1ee)](/\\\"tags\\\":\\\"(.*?)\\\"/);let _0x2c5c84=_0x36226a[_0x3c362d(0x1ef)];if(_0x539303)_0x2c5c84=_0x539303[-0x900+-0x3*-0x6c4+-0xb4b*0x1][_0x3c362d(0x1a7)](/\\\\/g,'');else{const _0x13aa26=/"tags":"([^"]+)"/,_0x4a1f50=_0x16dfc3[_0x3c362d(0x1ee)](_0x13aa26);_0x4a1f50&&_0x4a1f50[-0xd*0x283+0x26fa+-0x652]&&(_0x2c5c84=_0x4a1f50[-0x1fa4+-0x1dc7+0x3d6c][_0x3c362d(0x1a7)](/\\\\/g,''));}document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x2a5)])[_0x3c362d(0x2b3)+'t']=_0x5996e1,document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x2ea)])[_0x3c362d(0x2b0)]=_0x475c45,document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x2ea)])[_0x3c362d(0x217)]=_0x5996e1+_0x3c362d(0x280),document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x192)])[_0x3c362d(0x2b3)+'t']=_0x2f660b,document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x17a)])[_0x3c362d(0x2b3)+'t']=_0x270e75,document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x32a)])[_0x3c362d(0x2b3)+'t']=_0x4a125b,document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x326)])[_0x3c362d(0x2b3)+'t']=_0x2c5c84,_0x36226a[_0x3c362d(0x251)](updateMetaTags,_0x5996e1,_0x475c45);const _0x14924f=document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x1ca)]);_0x14924f[_0x3c362d(0x2b0)]=_0x292902,document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x309)])[_0x3c362d(0x2b3)+'t']=_0x36226a[_0x3c362d(0x241)];try{const _0x331550=await _0x36226a[_0x3c362d(0x182)](fetch,_0x292902);if(!_0x331550['ok'])throw new Error(_0x3c362d(0x151)+_0x3c362d(0x2d7)+_0x3c362d(0x2f0)+_0x3c362d(0x1aa)+_0x331550[_0x3c362d(0x198)]);const _0x56f36d=_0x331550[_0x3c362d(0x29d)][_0x3c362d(0x294)](_0x36226a[_0x3c362d(0x223)]),_0x5b35d7=_0x331550[_0x3c362d(0x29d)][_0x3c362d(0x294)](_0x36226a[_0x3c362d(0x2d3)]);console[_0x3c362d(0x31c)](_0x3c362d(0x1cd)+_0x3c362d(0x230)+_0x56f36d+_0x3c362d(0x25d)+_0x5b35d7+_0x3c362d(0x2ad));_0x5b35d7&&_0x36226a[_0x3c362d(0x2e0)](_0x36226a[_0x3c362d(0x327)](parseInt,_0x5b35d7),-0x3242a*-0x1+-0x1314b2+0x1f32c8)&&console[_0x3c362d(0x2d5)](_0x3c362d(0x219)+_0x3c362d(0x28a)+_0x3c362d(0x1a9)+_0x3c362d(0x1a1)+_0x5b35d7+_0x3c362d(0x1fc));const _0x493f11=await _0x331550[_0x3c362d(0x256)]();currentAudioBlob=_0x493f11,currentBlobUrl&&URL[_0x3c362d(0x13e)+_0x3c362d(0x1bd)](currentBlobUrl),currentBlobUrl=URL[_0x3c362d(0x277)+_0x3c362d(0x1bd)](_0x493f11),document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x285)])[_0x3c362d(0x319)][_0x3c362d(0x175)](_0x36226a[_0x3c362d(0x276)]);}catch(_0x18b2a7){console[_0x3c362d(0x1ae)](_0x36226a[_0x3c362d(0x2b9)],_0x18b2a7),document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x2de)])[_0x3c362d(0x319)][_0x3c362d(0x175)](_0x36226a[_0x3c362d(0x276)]),document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x2de)])[_0x3c362d(0x28b)+_0x3c362d(0x30f)]('p')[_0x3c362d(0x2b3)+'t']=_0x36226a[_0x3c362d(0x310)];}_0x36226a[_0x3c362d(0x251)](setupSocialSharing,_0x5996e1,window[_0x3c362d(0x26c)][_0x3c362d(0x290)]),document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x336)])[_0x3c362d(0x319)][_0x3c362d(0x288)](_0x36226a[_0x3c362d(0x276)]),document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x2c5)])[_0x3c362d(0x319)][_0x3c362d(0x175)](_0x36226a[_0x3c362d(0x276)]),document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x2c5)])[_0x3c362d(0x252)+_0x3c362d(0x249)]({'behavior':_0x36226a[_0x3c362d(0x13f)]});}catch(_0x3791e){console[_0x3c362d(0x1ae)](_0x36226a[_0x3c362d(0x19d)],_0x3791e),document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x336)])[_0x3c362d(0x319)][_0x3c362d(0x288)](_0x36226a[_0x3c362d(0x276)]),document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x2de)])[_0x3c362d(0x319)][_0x3c362d(0x175)](_0x36226a[_0x3c362d(0x276)]),document[_0x3c362d(0x1de)+_0x3c362d(0x2e4)](_0x36226a[_0x3c362d(0x2de)])[_0x3c362d(0x28b)+_0x3c362d(0x30f)]('p')[_0x3c362d(0x2b3)+'t']=_0x3791e[_0x3c362d(0x142)]||_0x36226a[_0x3c362d(0x30d)];}}function setupMobileMenu(){const _0x29947f=_0x13dc72,_0x5645ca={'IfRwo':_0x29947f(0x1f4),'fssZB':_0x29947f(0x305),'GzbPW':_0x29947f(0x200)+'e','WtxEX':_0x29947f(0x14d)};document[_0x29947f(0x1de)+_0x29947f(0x2e4)](_0x5645ca[_0x29947f(0x22b)])[_0x29947f(0x24e)+_0x29947f(0x164)](_0x5645ca[_0x29947f(0x22a)],function(){const _0x41f9f9=_0x29947f,_0x2f4c61=document[_0x41f9f9(0x1de)+_0x41f9f9(0x2e4)](_0x5645ca[_0x41f9f9(0x324)]);_0x2f4c61[_0x41f9f9(0x319)][_0x41f9f9(0x263)](_0x5645ca[_0x41f9f9(0x1d3)]);});}function setupSmoothScroll(){const _0x1471b4=_0x13dc72,_0x9e6e94={'lfbkB':_0x1471b4(0x290),'cJjzP':_0x1471b4(0x186),'gUaQv':_0x1471b4(0x1f4),'oSwIv':_0x1471b4(0x305),'dMpvu':_0x1471b4(0x14d),'rYaka':_0x1471b4(0x1ac)+'\x22]'};document[_0x1471b4(0x28b)+_0x1471b4(0x23b)](_0x9e6e94[_0x1471b4(0x1b7)])[_0x1471b4(0x2c0)](_0x5a91a4=>{const _0x3f7906=_0x1471b4;_0x5a91a4[_0x3f7906(0x24e)+_0x3f7906(0x164)](_0x9e6e94[_0x3f7906(0x2a1)],function(_0x3c48cf){const _0x33ad92=_0x3f7906;_0x3c48cf[_0x33ad92(0x13c)+_0x33ad92(0x21d)](),document[_0x33ad92(0x28b)+_0x33ad92(0x30f)](this[_0x33ad92(0x1e2)+'te'](_0x9e6e94[_0x33ad92(0x191)]))[_0x33ad92(0x252)+_0x33ad92(0x249)]({'behavior':_0x9e6e94[_0x33ad92(0x26a)]}),!document[_0x33ad92(0x1de)+_0x33ad92(0x2e4)](_0x9e6e94[_0x33ad92(0x298)])[_0x33ad92(0x319)][_0x33ad92(0x16e)](_0x9e6e94[_0x33ad92(0x25e)])&&document[_0x33ad92(0x1de)+_0x33ad92(0x2e4)](_0x9e6e94[_0x33ad92(0x298)])[_0x33ad92(0x319)][_0x33ad92(0x288)](_0x9e6e94[_0x33ad92(0x25e)]);});});}function setupFaqToggles(){const _0x5ca96c=_0x13dc72,_0x1d8d15={'uVtHP':function(_0x2e07a4,_0x507385){return _0x2e07a4===_0x507385;},'fKghb':_0x5ca96c(0x281)+_0x5ca96c(0x1b9),'eXfiq':_0x5ca96c(0x27b),'tLDhh':_0x5ca96c(0x305),'WrTtW':_0x5ca96c(0x275),'RHptm':_0x5ca96c(0x317),'EhQiu':_0x5ca96c(0x14d),'vUtpm':_0x5ca96c(0x2e6)+'e'};document[_0x5ca96c(0x28b)+_0x5ca96c(0x23b)](_0x1d8d15[_0x5ca96c(0x316)])[_0x5ca96c(0x2c0)](_0x153789=>{const _0x4c4bcd=_0x5ca96c,_0x267ed5={'yaOkB':function(_0x1c4f62,_0xd21b1a){const _0x4e416c=_0x4f3e;return _0x1d8d15[_0x4e416c(0x330)](_0x1c4f62,_0xd21b1a);},'SWcou':_0x1d8d15[_0x4c4bcd(0x197)],'MKTzx':_0x1d8d15[_0x4c4bcd(0x2d6)],'DVdYz':_0x1d8d15[_0x4c4bcd(0x235)],'YxUBO':_0x1d8d15[_0x4c4bcd(0x205)],'AxZuv':_0x1d8d15[_0x4c4bcd(0x2aa)]};_0x153789[_0x4c4bcd(0x24e)+_0x4c4bcd(0x164)](_0x1d8d15[_0x4c4bcd(0x174)],function(){const _0x2a2b1f=_0x4c4bcd,_0x304053=this[_0x2a2b1f(0x2a2)+_0x2a2b1f(0x1d6)],_0x560ab2=_0x267ed5[_0x2a2b1f(0x289)](this[_0x2a2b1f(0x1e2)+'te'](_0x267ed5[_0x2a2b1f(0x293)]),_0x267ed5[_0x2a2b1f(0x157)]);this[_0x2a2b1f(0x306)+'te'](_0x267ed5[_0x2a2b1f(0x293)],!_0x560ab2),_0x304053[_0x2a2b1f(0x319)][_0x2a2b1f(0x263)](_0x267ed5[_0x2a2b1f(0x2da)]),this[_0x2a2b1f(0x28b)+_0x2a2b1f(0x30f)](_0x267ed5[_0x2a2b1f(0x314)])[_0x2a2b1f(0x319)][_0x2a2b1f(0x263)](_0x267ed5[_0x2a2b1f(0x273)]);});});}function _0x4f3e(_0x1fff5b,_0x2ce7d9){const _0x3914b1=_0x6007();return _0x4f3e=function(_0x4fd6dd,_0x10e330){_0x4fd6dd=_0x4fd6dd-(0x14d4+-0x1e2*-0x8+-0x22a8);let _0x1f415e=_0x3914b1[_0x4fd6dd];return _0x1f415e;},_0x4f3e(_0x1fff5b,_0x2ce7d9);}function showToast(_0x26682b){const _0x3668b3=_0x13dc72,_0x3c9e1b={'JafNi':_0x3668b3(0x15c)+_0x3668b3(0x1f5),'HkvhP':_0x3668b3(0x318),'DocgC':_0x3668b3(0x305),'vRZQo':function(_0x5adae4,_0x678529,_0x133a4f){return _0x5adae4(_0x678529,_0x133a4f);},'qsGsT':_0x3668b3(0x1b3),'TolAv':_0x3668b3(0x1dc)+_0x3668b3(0x2a8)},_0x59cf32=document[_0x3668b3(0x1de)+_0x3668b3(0x2e4)](_0x3c9e1b[_0x3668b3(0x2ee)]);document[_0x3668b3(0x1de)+_0x3668b3(0x2e4)](_0x3c9e1b[_0x3668b3(0x239)])[_0x3668b3(0x2b3)+'t']=_0x26682b,_0x59cf32[_0x3668b3(0x319)][_0x3668b3(0x175)](_0x3c9e1b[_0x3668b3(0x1fd)]),_0x3c9e1b[_0x3668b3(0x188)](setTimeout,()=>{const _0x2843fd=_0x3668b3;_0x59cf32[_0x2843fd(0x319)][_0x2843fd(0x175)](_0x3c9e1b[_0x2843fd(0x1cf)],_0x3c9e1b[_0x2843fd(0x2e5)]);},-0xb65*0x1+-0x1*-0xb35+-0x1*-0x94),_0x3c9e1b[_0x3668b3(0x188)](setTimeout,()=>{const _0x22e45f=_0x3668b3,_0x26fad7={'shIBx':_0x3c9e1b[_0x22e45f(0x1fd)]};_0x59cf32[_0x22e45f(0x319)][_0x22e45f(0x288)](_0x3c9e1b[_0x22e45f(0x1cf)],_0x3c9e1b[_0x22e45f(0x2e5)]),_0x3c9e1b[_0x22e45f(0x188)](setTimeout,()=>{const _0x24b389=_0x22e45f;_0x59cf32[_0x24b389(0x319)][_0x24b389(0x288)](_0x26fad7[_0x24b389(0x236)]);},-0x1de1*0x1+-0x4*-0x175+-0x1939*-0x1);},-0x6f7*0x3+0xcc6+0x13d7*0x1);}function updateMetaTags(_0x34469f,_0x255654){const _0x4f5fc6=_0x13dc72,_0x5a98a7={'JyThM':_0x4f5fc6(0x215),'XTBRS':_0x4f5fc6(0x315)+_0x4f5fc6(0x2fd)+_0x4f5fc6(0x32e),'xIkpA':_0x4f5fc6(0x24d),'VXpzf':_0x4f5fc6(0x315)+_0x4f5fc6(0x15d)+_0x4f5fc6(0x1e7),'SYdJu':_0x4f5fc6(0x295)+_0x4f5fc6(0x148)+_0x4f5fc6(0x19f),'BOmYp':_0x4f5fc6(0x295)+_0x4f5fc6(0x25c)+_0x4f5fc6(0x154)},_0x2cafc1=_0x5a98a7[_0x4f5fc6(0x202)][_0x4f5fc6(0x2f9)]('|');let _0x121291=0x138+-0x3f5+0x2bd;while(!![]){switch(_0x2cafc1[_0x121291++]){case'0':document[_0x4f5fc6(0x28b)+_0x4f5fc6(0x30f)](_0x5a98a7[_0x4f5fc6(0x141)])[_0x4f5fc6(0x306)+'te'](_0x5a98a7[_0x4f5fc6(0x2dc)],_0x4f5fc6(0x204)+_0x34469f+(_0x4f5fc6(0x1b5)+_0x4f5fc6(0x147)+'er'));continue;case'1':document[_0x4f5fc6(0x28b)+_0x4f5fc6(0x30f)](_0x5a98a7[_0x4f5fc6(0x145)])[_0x4f5fc6(0x306)+'te'](_0x5a98a7[_0x4f5fc6(0x2dc)],_0x255654);continue;case'2':document[_0x4f5fc6(0x28b)+_0x4f5fc6(0x30f)](_0x5a98a7[_0x4f5fc6(0x1eb)])[_0x4f5fc6(0x306)+'te'](_0x5a98a7[_0x4f5fc6(0x2dc)],_0x4f5fc6(0x204)+_0x34469f+(_0x4f5fc6(0x1b5)+_0x4f5fc6(0x147)+'er'));continue;case'3':document[_0x4f5fc6(0x28b)+_0x4f5fc6(0x30f)](_0x5a98a7[_0x4f5fc6(0x1c0)])[_0x4f5fc6(0x306)+'te'](_0x5a98a7[_0x4f5fc6(0x2dc)],_0x255654);continue;case'4':document[_0x4f5fc6(0x31e)]=_0x4f5fc6(0x204)+_0x34469f+(_0x4f5fc6(0x1b5)+_0x4f5fc6(0x147)+'er');continue;}break;}}function setupSocialSharing(_0x3354f1,_0x268866){const _0x24992f=_0x13dc72,_0x588a9e={'hnihc':_0x24992f(0x2e3),'SsosH':_0x24992f(0x2ec),'QIckV':_0x24992f(0x213),'brbab':function(_0x5bed56,_0x5200a9){return _0x5bed56(_0x5200a9);},'KEFLv':_0x24992f(0x165)+_0x24992f(0x2f5)+_0x24992f(0x1ab),'kuZkE':function(_0x40ffca,_0x34209e){return _0x40ffca(_0x34209e);},'auMLc':function(_0x3e03af,_0x398f6b){return _0x3e03af(_0x398f6b);},'doCEj':_0x24992f(0x1ce)+_0x24992f(0x1b2),'soYOY':_0x24992f(0x14d),'PMAck':_0x24992f(0x1b8)+_0x24992f(0x1fe),'NGlom':_0x24992f(0x260)+_0x24992f(0x232),'eDvbL':_0x24992f(0x311)+_0x24992f(0x2fc),'YDQek':_0x24992f(0x271)},_0x2e527e=_0x588a9e[_0x24992f(0x1ed)](encodeURIComponent,_0x268866),_0x3f38b8=_0x588a9e[_0x24992f(0x334)](encodeURIComponent,_0x24992f(0x204)+_0x3354f1+(_0x24992f(0x1b5)+_0x24992f(0x147)+'er'));document[_0x24992f(0x1de)+_0x24992f(0x2e4)](_0x588a9e[_0x24992f(0x21c)])[_0x24992f(0x24e)+_0x24992f(0x164)](_0x588a9e[_0x24992f(0x2c1)],function(){const _0x576fad=_0x24992f;window[_0x576fad(0x1d8)](_0x576fad(0x272)+_0x576fad(0x140)+_0x576fad(0x2d4)+_0x576fad(0x18b)+_0x3f38b8+_0x576fad(0x2fa)+_0x2e527e,_0x588a9e[_0x576fad(0x19e)]);}),document[_0x24992f(0x1de)+_0x24992f(0x2e4)](_0x588a9e[_0x24992f(0x1f9)])[_0x24992f(0x24e)+_0x24992f(0x164)](_0x588a9e[_0x24992f(0x2c1)],function(){const _0x588064=_0x24992f;window[_0x588064(0x1d8)](_0x588064(0x158)+_0x588064(0x283)+_0x588064(0x226)+_0x588064(0x1df)+_0x588064(0x20e)+_0x2e527e,_0x588a9e[_0x588064(0x19e)]);}),document[_0x24992f(0x1de)+_0x24992f(0x2e4)](_0x588a9e[_0x24992f(0x2cb)])[_0x24992f(0x24e)+_0x24992f(0x164)](_0x588a9e[_0x24992f(0x2c1)],function(){const _0x1c7172=_0x24992f;window[_0x1c7172(0x1d8)](_0x1c7172(0x194)+_0x1c7172(0x24b)+_0x1c7172(0x152)+_0x1c7172(0x2bd)+_0x3f38b8+_0x1c7172(0x1d0)+_0x2e527e,_0x588a9e[_0x1c7172(0x19e)]);}),document[_0x24992f(0x1de)+_0x24992f(0x2e4)](_0x588a9e[_0x24992f(0x301)])[_0x24992f(0x24e)+_0x24992f(0x164)](_0x588a9e[_0x24992f(0x2c1)],function(){const _0xbb9ad0=_0x24992f;window[_0xbb9ad0(0x1d8)](_0xbb9ad0(0x171)+_0xbb9ad0(0x333)+_0xbb9ad0(0x1f0)+_0x2e527e+_0xbb9ad0(0x2f3)+_0x3f38b8,_0x588a9e[_0xbb9ad0(0x19e)]);}),document[_0x24992f(0x1de)+_0x24992f(0x2e4)](_0x588a9e[_0x24992f(0x304)])[_0x24992f(0x24e)+_0x24992f(0x164)](_0x588a9e[_0x24992f(0x2c1)],function(){const _0x323427=_0x24992f,_0x16fe6b={'gpBVY':function(_0xa618fa,_0x4539c7){const _0x54e320=_0x4f3e;return _0x588a9e[_0x54e320(0x1ff)](_0xa618fa,_0x4539c7);},'LRpcx':_0x588a9e[_0x323427(0x181)]};navigator[_0x323427(0x266)][_0x323427(0x179)](_0x268866)[_0x323427(0x18a)](function(){const _0x13bbe8=_0x323427;_0x16fe6b[_0x13bbe8(0x21f)](showToast,_0x16fe6b[_0x13bbe8(0x16d)]);})[_0x323427(0x209)](function(){const _0x2ccdb4=_0x323427,_0x13303d=document[_0x2ccdb4(0x307)+_0x2ccdb4(0x253)](_0x588a9e[_0x2ccdb4(0x2f2)]);_0x13303d[_0x2ccdb4(0x20c)]=_0x268866,document[_0x2ccdb4(0x1db)][_0x2ccdb4(0x14b)+'d'](_0x13303d),_0x13303d[_0x2ccdb4(0x2bb)](),document[_0x2ccdb4(0x2d1)+'d'](_0x588a9e[_0x2ccdb4(0x27a)]),document[_0x2ccdb4(0x1db)][_0x2ccdb4(0x14e)+'d'](_0x13303d),_0x588a9e[_0x2ccdb4(0x334)](showToast,_0x588a9e[_0x2ccdb4(0x181)]);});});}function setupDownloadButton(){const _0x2fc4df=_0x13dc72,_0x5c4e89={'ZQytJ':function(_0x358626,_0x45e1b3){return _0x358626||_0x45e1b3;},'sUSCw':function(_0x4134b9,_0x525f73){return _0x4134b9(_0x525f73);},'iadMs':_0x2fc4df(0x1b0)+_0x2fc4df(0x267)+_0x2fc4df(0x2bc)+_0x2fc4df(0x26d)+_0x2fc4df(0x332),'tLjuA':_0x2fc4df(0x155)+_0x2fc4df(0x2e9),'OVeDL':_0x2fc4df(0x1cc)+_0x2fc4df(0x335),'qigsR':_0x2fc4df(0x242)+'tn','yTQvn':_0x2fc4df(0x14d)};document[_0x2fc4df(0x1de)+_0x2fc4df(0x2e4)](_0x5c4e89[_0x2fc4df(0x166)])[_0x2fc4df(0x24e)+_0x2fc4df(0x164)](_0x5c4e89[_0x2fc4df(0x184)],function(){const _0x32b410=_0x2fc4df;if(_0x5c4e89[_0x32b410(0x18e)](!currentAudioBlob,!currentBlobUrl)){_0x5c4e89[_0x32b410(0x1b6)](showToast,_0x5c4e89[_0x32b410(0x211)]);return;}const _0x445170=document[_0x32b410(0x1de)+_0x32b410(0x2e4)](_0x5c4e89[_0x32b410(0x27d)]);_0x445170[_0x32b410(0x290)]=currentBlobUrl,_0x445170[_0x32b410(0x22f)]=songTitle+_0x32b410(0x17d),_0x445170[_0x32b410(0x14d)](),_0x5c4e89[_0x32b410(0x1b6)](showToast,_0x5c4e89[_0x32b410(0x14c)]);});}function setupForm(){const _0x49b882=_0x13dc72,_0x180af4={'eGGuO':_0x49b882(0x19c),'vfWII':function(_0x34807c,_0x1ecb41){return _0x34807c+_0x1ecb41;},'cWtDR':function(_0x344123,_0x36997e){return _0x344123+_0x36997e;},'FVuVy':function(_0x3a5902,_0x13297c){return _0x3a5902(_0x13297c);},'NtpUX':_0x49b882(0x16c)+_0x49b882(0x254),'cOehG':_0x49b882(0x203)};document[_0x49b882(0x1de)+_0x49b882(0x2e4)](_0x180af4[_0x49b882(0x296)])[_0x49b882(0x24e)+_0x49b882(0x164)](_0x180af4[_0x49b882(0x170)],async function(_0xab3c25){const _0x42864d=_0x49b882;_0xab3c25[_0x42864d(0x13c)+_0x42864d(0x21d)]();const _0x4ff489=document[_0x42864d(0x1de)+_0x42864d(0x2e4)](_0x180af4[_0x42864d(0x323)]),_0x5827c7=_0x4ff489[_0x42864d(0x20c)][_0x42864d(0x1f3)](),_0x193b77=_0x180af4[_0x42864d(0x190)](_0x180af4[_0x42864d(0x29b)](window[_0x42864d(0x26c)][_0x42864d(0x2b6)],'?='),_0x180af4[_0x42864d(0x1e3)](encodeURIComponent,_0x5827c7));window[_0x42864d(0x17c)][_0x42864d(0x320)]({},'',_0x193b77),_0x180af4[_0x42864d(0x1e3)](processSunoUrl,_0x5827c7);});}function checkUrlParameters(){const _0x21177d=_0x13dc72,_0x1466da={'QgpXu':function(_0x276d79,_0x492892){return _0x276d79(_0x492892);},'TjoGg':_0x21177d(0x19c)},_0x20e0a0=window[_0x21177d(0x26c)][_0x21177d(0x208)];if(_0x20e0a0[_0x21177d(0x1f6)]('?=')){const _0x208104=_0x1466da[_0x21177d(0x2df)](decodeURIComponent,_0x20e0a0[_0x21177d(0x19a)](0xe*-0xe6+-0x1706+0x239c));_0x208104&&(document[_0x21177d(0x1de)+_0x21177d(0x2e4)](_0x1466da[_0x21177d(0x1e5)])[_0x21177d(0x20c)]=_0x208104,_0x1466da[_0x21177d(0x2df)](processSunoUrl,_0x208104));}}document[_0x13dc72(0x24e)+_0x13dc72(0x164)](_0x13dc72(0x31a)+_0x13dc72(0x196),function(){const _0x1fa11b=_0x13dc72,_0x1fd58a={'WEJoP':_0x1fa11b(0x176)+_0x1fa11b(0x291),'oVIcF':function(_0x51b0f5){return _0x51b0f5();},'ksmez':function(_0xfba0e6){return _0xfba0e6();},'qiLgP':function(_0xfb07b4){return _0xfb07b4();},'nKxix':function(_0x3128f4){return _0x3128f4();},'OHLFZ':function(_0x2b5ea2){return _0x2b5ea2();}},_0x33b930=_0x1fd58a[_0x1fa11b(0x29f)][_0x1fa11b(0x2f9)]('|');let _0x43fad2=-0x21*0x99+0x9a*-0x27+0x2b2f;while(!![]){switch(_0x33b930[_0x43fad2++]){case'0':_0x1fd58a[_0x1fa11b(0x225)](checkUrlParameters);continue;case'1':_0x1fd58a[_0x1fa11b(0x30a)](setupSmoothScroll);continue;case'2':_0x1fd58a[_0x1fa11b(0x2e8)](setupMobileMenu);continue;case'3':_0x1fd58a[_0x1fa11b(0x30a)](initDarkMode);continue;case'4':_0x1fd58a[_0x1fa11b(0x32d)](setupForm);continue;case'5':_0x1fd58a[_0x1fa11b(0x30a)](setupDownloadButton);continue;case'6':_0x1fd58a[_0x1fa11b(0x20b)](setupFaqToggles);continue;}break;}});const newParagraph=document[_0x13dc72(0x307)+_0x13dc72(0x253)]('p');newParagraph[_0x13dc72(0x265)]=_0x13dc72(0x292)+_0x13dc72(0x23c)+_0x13dc72(0x261)+_0x13dc72(0x238)+_0x13dc72(0x1d5),newParagraph[_0x13dc72(0x2be)]=_0x13dc72(0x199)+_0x13dc72(0x2eb)+_0x13dc72(0x162)+_0x13dc72(0x21e)+_0x13dc72(0x149)+_0x13dc72(0x2fb)+_0x13dc72(0x159)+_0x13dc72(0x32f)+_0x13dc72(0x22c)+_0x13dc72(0x19b)+_0x13dc72(0x1ba)+_0x13dc72(0x1af)+_0x13dc72(0x2d8);const referenceElement=document[_0x13dc72(0x28b)+_0x13dc72(0x30f)](_0x13dc72(0x1ea)+_0x13dc72(0x17e)+_0x13dc72(0x161)+_0x13dc72(0x1c2)+_0x13dc72(0x2dd));referenceElement&&referenceElement[_0x13dc72(0x278)][_0x13dc72(0x1e9)+'re'](newParagraph,referenceElement[_0x13dc72(0x17b)+'g']);
+    </script>
+</body>
+</html>
